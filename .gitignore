@@ -1,3 +1,4 @@
 dist/
 node_modules/
 used-time.md
+cypress/videos
