@@ -3,6 +3,7 @@ module.exports = {
     browser: true,
     es6: true,
     'jest/globals': true,
+    node: true,
   },
   extends: ['eslint:recommended', 'plugin:react/recommended'],
   parserOptions: {
@@ -11,6 +12,11 @@ module.exports = {
     },
     ecmaVersion: 2018,
     sourceType: 'module',
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
   },
   plugins: ['react', 'jest'],
   rules: {
@@ -25,4 +31,4 @@ module.exports = {
     'no-console': 'error',
     'react/prop-types': 0,
   },
-};
+}
