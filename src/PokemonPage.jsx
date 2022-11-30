@@ -35,7 +35,7 @@ const PokemonPage = ({ previous, next }) => {
   )
 
   return (
-    <>
+    <div className="pokemon-container">
       <div className="links">
         {previous && <Link to={`/pokemon/${previous.name}`}>Previous</Link>}
         <Link to="/">Home</Link>
@@ -76,7 +76,7 @@ const PokemonPage = ({ previous, next }) => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

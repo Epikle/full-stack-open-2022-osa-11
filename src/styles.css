@@ -62,10 +62,15 @@ footer {
   background-color: #eee;
 }
 
+.pokemon-container {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+}
+
 .links {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
   text-decoration: none;
   width: 332px;
 }
