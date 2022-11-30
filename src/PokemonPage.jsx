@@ -37,9 +37,9 @@ const PokemonPage = ({ previous, next }) => {
   return (
     <div className="pokemon-page-container">
       <div className="links">
-        {previous && <Link to={`/pokemon/${previous.name}`}>Previous</Link>}
-        <Link to="/">Home</Link>
-        {next && <Link to={`/pokemon/${next.name}`}>Next</Link>}
+        {previous && <Link to={`/pokemon/${previous.name}`}>⬅ Previous</Link>}
+        <Link to="/">Home 🏠</Link>
+        {next && <Link to={`/pokemon/${next.name}`}>Next ➡</Link>}
       </div>
       <div className={`pokemon-page pokemon-type-${type.name}`}>
         <div
