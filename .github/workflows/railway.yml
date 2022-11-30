@@ -46,7 +46,7 @@ jobs:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
 
   tag_release:
-    if: ${{ github.event_name == 'push' }}
+    if: ${{ github.event_name == 'push' && !contains( join(github.event.commits.*.message, ' '), '#skip' ) }}
     needs: [deploy]
     runs-on: ubuntu-latest
     steps:
