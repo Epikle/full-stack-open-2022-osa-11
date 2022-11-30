@@ -3,6 +3,9 @@ name: Deploy to Railway
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
 
 jobs:
   deploy:
@@ -21,11 +24,20 @@ jobs:
       - name: lint
         run: npm run eslint
 
+      - name: test
+        run: npm run test
+
       - name: build
         run: npm run build
 
-      - name: test
-        run: npm run test
+      - name: e2e tests
+        uses: cypress-io/github-action@v4
+        with:
+          build: npm run build
+          start: npm run start
+          wait-on: http://localhost:5000
+
+        if: ${{ github.event_name == 'push' }}
 
       - name: Install Railway
         run: npm i -g @railway/cli
