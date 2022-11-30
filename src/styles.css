@@ -70,6 +70,12 @@ footer {
   background-color: #eee;
 }
 
+.pokemon-page-container {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+}
+
 .links {
   display: flex;
   justify-content: space-between;
