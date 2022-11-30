@@ -1,4 +1,5 @@
 webpack.config.js
 cypress.config.js
+railway.toml
 node_modules/
 dist/
