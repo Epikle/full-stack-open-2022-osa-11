@@ -8,21 +8,26 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  checks:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
+
       - name: npm install
         run: npm install
+
       - name: lint
         run: npm run eslint
+
       - name: test
         run: npm run test
+
       - name: build
         run: npm run build
+
       - name: e2e tests
         uses: cypress-io/github-action@v4
         with:
@@ -30,13 +35,12 @@ jobs:
           start: npm run start
           wait-on: http://localhost:5000
 
-  deploy:
-    if: ${{ github.event_name == 'push' }}
-    runs-on: ubuntu-latest
-    steps:
       - name: Install Railway
+        if: ${{ github.event_name == 'push' }}
         run: npm i -g @railway/cli
+
       - name: Deploy
+        if: ${{ github.event_name == 'push' }}
         run: railway up
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
