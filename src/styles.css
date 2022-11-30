@@ -13,6 +13,10 @@ body {
   font-size: 18px;
 }
 
+h1 {
+  margin-inline: 1rem;
+}
+
 body > div {
   flex: 1 0 auto;
 }
@@ -52,10 +56,14 @@ footer {
   position: relative;
 }
 
+.list-item:is(:hover, :focus) {
+  outline: 2px solid goldenrod;
+}
+
 .list-item-name {
   position: absolute;
   color: #000;
-  bottom: 0;
+  bottom: 5px;
   width: 100%;
   text-align: center;
   text-transform: capitalize;
