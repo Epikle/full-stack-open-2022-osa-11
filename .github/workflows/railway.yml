@@ -39,11 +39,27 @@ jobs:
         if: ${{ github.event_name == 'push' }}
         run: npm i -g @railway/cli
 
-      - name: Deploy
+      - name: Deploy Railway
         if: ${{ github.event_name == 'push' }}
         run: railway up
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+
+      - name: Deploy Success Message Discord
+        uses: rjstone/discord-webhook-notify@v1
+        if: ${{ success() && github.event_name == 'push' && !contains( join(github.event.commits.*.message, ' '), '#skip' ) }}
+        with:
+          severity: info
+          details: Deploy Succeeded!
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+
+      - name: Build Failure Message Discord
+        uses: rjstone/discord-webhook-notify@v1
+        if: ${{ failure() }}
+        with:
+          severity: error
+          details: Build Failed!
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
   tag_release:
     if: ${{ github.event_name == 'push' && !contains( join(github.event.commits.*.message, ' '), '#skip' ) }}
